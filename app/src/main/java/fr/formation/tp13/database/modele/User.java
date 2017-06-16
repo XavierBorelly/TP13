@@ -14,6 +14,8 @@ public class User extends Modele<User> {
 
     private String nom;
 
+    private String description;
+
     @Columne(value = "NOM", type = Type.String)
     public String getNom() {
         return nom;
@@ -23,10 +25,20 @@ public class User extends Modele<User> {
         this.nom = nom;
     }
 
+    @Columne(value = "DESCRIPTION", type = Type.String)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getCreateDataBase() {
         return "CREATE TABLE " + getTable() + "("
                 + "ID" + " Integer PRIMARY KEY AUTOINCREMENT, "
-                + "NOM Text NOT NULL "
+                + "NOM Text NOT NULL, "
+                + "description Text NOT NULL "
                 + ");";
     }
 
@@ -34,7 +46,8 @@ public class User extends Modele<User> {
     public User build(int id, List<String> valeurs) {
         User user = new User();
         user.setId(id);
-        user.setNom(valeurs.get(0));
+        user.setNom(valeurs.get(1));
+        user.setDescription(valeurs.get(0));
         return user;
     }
 

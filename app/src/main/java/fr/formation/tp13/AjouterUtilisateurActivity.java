@@ -15,18 +15,21 @@ public class AjouterUtilisateurActivity extends Activity {
 
 
     private EditText nom;
+    private EditText description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
         nom = (EditText) findViewById(R.id.nom);
+        description = (EditText) findViewById(R.id.description);
     }
 
     public void sauvegarder(View v) {
 
         User utilisateur = new User();
         utilisateur.setNom(nom.getText().toString());
+        utilisateur.setDescription(description.getText().toString());
         // Transformation en JSON :
         String flux = (new Gson()).toJson(utilisateur);
         Log.d("Utilisateur en JSON", flux);
